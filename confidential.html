@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+<style>
+	
+    body {
+        margin: 0; 
+		padding: 0; 
+		height: 100vh;
+		display: flex;
+		flex-direction: column; 
+		justify-content: center; 
+		align-items: center; 
+		background: #ffffff); 
+		font-family: "Calibri"; 
+		overflow: hidden;
+    }
+
+    h1 {
+		text-align: center;
+        color: #ff3366;
+        font-size: 2.5em;
+        text-shadow: 1px 1px 5px #ffb3c6;
+    }
+
+    button {
+        margin: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    #yesBtn {
+		animation: bounce 1s infinite;
+		
+		padding: 14px 30px;
+		font-size: 30px;
+		font-weight: 600;
+		border-radius: 30px;
+		border: none;
+		cursor: pointer;
+		
+		background: linear-gradient(135deg, #ff7eb3, #ff758c);
+		color: white;
+
+		box-shadow: 0 10px 25px rgba(255, 117, 140, 0.35);
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	
+		/*
+        background-color: #ff6699;
+        color: white;
+        animation: bounce 1s infinite;
+        font-size: 1.5em;       /* bigger text */
+        padding: 30px 60px;     /* bigger button */
+		*/
+    }
+
+    #noBtn {
+		border-radius: 10px; /* fully rounded / pill shape */
+        background-color: #cccccc;
+        border-radius: 15px;
+		color: #333;
+        position: absolute;
+        font-size: 1em;       /* smaller text */
+        padding: 10px 20px;     /* smaller button */
+    }
+
+    #message {
+        font-size: 1.5em;
+        color: #ff3366;
+        text-shadow: 1px 1px 2px #fff;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+	
+	#message {
+		opacity: 0;
+		transform: scale(0.8);
+		transition: all 0.4s ease;
+	}
+
+	#message.pop {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #ff3366;
+        transform: rotate(45deg);
+        animation: float 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #ff3366;
+        border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes float {
+        0% { transform: translateY(100vh) scale(0.5); opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+	
+	p{
+		text-align: center;
+        color: #ff3366;
+        font-size: 100;
+        text-shadow: 1px 1px 5px #ffb3c6;
+	}
+	
+	
+</style>
+</head>
+<body>
+<body>
+    <div id="valentineIntro">
+    <img src="https://gifdb.com/images/high/bear-love-bouncing-mocha-with-flowers-n4m0fyne6h4e6y2x.gif" 
+         alt="Valentine Image" 
+         style="width:350px; display:block; margin:20px auto; border-radius:15px;">
+    
+    <h1>Hi, Teennn. Will you be my Valentine?</h1>
+	</div>
+	
+    <div>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No 🙄</button>
+    </div>
+	
+	<p id="warning">(ayaw nag try to click "No" kay di na nimo ma gukod, or try if gusto ka)</p>
+    <div id="message"></div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const message = document.getElementById('message');
+		const warning = document.getElementById("warning");
+		const intro = document.getElementById('valentineIntro');
+		
+		const texts = ['No 🙄', 'No (Please 🥺)', 'No (Pleaseeee 🥺)', 'No (Puhhleeeeease 🥺)','No (Cge na 😅)','No (Cge na pls 😅)','No (Cge na baaaa 😭)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)', 'No (Di ko pa gukod 😛)'];
+		let index = 0;
+
+        // pang dodge sa "No" btn
+        noBtn.addEventListener('mouseenter', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+			
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+			
+			//pang update sa noBtn text
+			noBtn.textContent = texts[index];
+			index = (index + 1) % texts.length;
+        });
+
+        // message for "Yes"
+        yesBtn.addEventListener('click', () => {
+			intro.remove(); 
+			warning.style.display = "none"; 
+			startHeartShower();
+			yesBtn.remove();
+			
+			noBtn.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+			noBtn.style.opacity = '0';
+			noBtn.style.transform = 'scale(0.5)';
+
+			setTimeout(() => {
+				noBtn.remove();
+			}, 400);
+			
+			message.innerHTML = `
+				<h1><b>YAY! CAN'T WAIT TO SEE YOU THIS WEEKEND</b></h1>
+				<img src="https://i.pinimg.com/originals/d7/2f/c9/d72fc961a47eec1396864393ff33a566.gif" 
+					alt="Excited GIF" 
+					style="border-radius:30px; width:350px; display:block; margin:20px auto 0 auto;">
+				<iframe 
+					data-testid="embed-iframe" 
+					style="border-radius:12px; display:block; margin:20px auto;" 
+					src="https://open.spotify.com/embed/track/6w9SgpKIzB54R2xHml1UPP?utm_source=generator" 
+					width="40%" 
+					height="100" 
+					frameborder="0" 
+					allowfullscreen="" 
+					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+					loading="lazy">
+				</iframe>
+				<p style="text-align:center; color:#ff3366; font-size:14px;">
+					P.S. di mo auto play ang music 😅 e click nalang ang play button HAHA ako jud gi try, di makaya sa powers
+				</p>
+			`;
+			message.classList.add('pop');
+        });
+		
+		// cursor hover sa yesBtn
+		yesBtn.addEventListener('mouseenter', () => {
+			yesBtn.textContent = 'Yes!! Click meeee 😍';
+		});
+
+		// para ma balik when cursor leaves
+		yesBtn.addEventListener('mouseleave', () => {
+			yesBtn.textContent = 'Yes';
+		});
+		
+		function startHeartShower() {
+			const heartInterval = setInterval(() => {
+				createHeart();
+			}, 100); // heart every 0.1 seconds
+		}		
+		
+        // paras floating hearts
+        function createHeart() {
+			const heart = document.createElement('div');
+			heart.classList.add('heart');
+			heart.textContent = '💖';
+
+			// random position near the middle of the screen
+			heart.style.left = Math.random() * window.innerWidth + 'px';
+			heart.style.top = Math.random() * window.innerHeight + 'px';
+
+			document.body.appendChild(heart);
+
+			// remove after animation
+			setTimeout(() => {
+				heart.remove();
+			}, 8000);
+	
+		}
+		
+    </script>
+</body>
+</html>
